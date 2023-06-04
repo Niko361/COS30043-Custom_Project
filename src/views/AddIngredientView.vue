@@ -1,7 +1,6 @@
 <template>
   <div class="search">
-    <h1>This is the search for food page</h1>
-    <SearchFood msg="werwe" />
+    <SearchFood msg="" />
   </div>
 </template>
 
@@ -10,7 +9,7 @@
 import SearchFood from "@/components/SearchFood.vue";
 
 export default {
-  name: "SearchView",
+  name: "AddIngredientView",
   components: {
     SearchFood,
   },
