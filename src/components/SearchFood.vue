@@ -1,18 +1,24 @@
 <template>
-  <div class="search">
-    <h1>Search For a food</h1>
-    <p>
-      Food Name:
-      <input
-        v-model="searchquery"
-        type="text"
-        class="form-control"
-        v-on:keyup.enter="search(searchquery)"
-      />
-    </p>
-    <button v-on:click="search(searchquery)" class="btn btn-primary">
-      Search
-    </button>
+  <div class="search row">
+    <h2>Search For an ingredient</h2>
+    <div class="row">
+      <p>Ingredient Name:</p>
+      <div class="col-lg-11 col-md-10 col-sm-9 col-7">
+        <input
+          v-model="searchquery"
+          type="text"
+          class="form-control"
+          v-on:keyup.enter="search(searchquery)"
+        />
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-3 col-5">
+        <div class="row">
+          <button v-on:click="search(searchquery)" class="btn btn-primary">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="table-responsive">
         <table class="table table-striped table-hover">

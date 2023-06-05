@@ -21,7 +21,7 @@ const routes = [
     component: RecipeView,
   },
   {
-    path: "/foodsearch",
+    path: "/",
     name: "foodsearch",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

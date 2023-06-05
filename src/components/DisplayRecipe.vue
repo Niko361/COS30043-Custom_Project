@@ -1,13 +1,15 @@
 <template>
-  <div class="displayrecipe">
+  <div class="displayrecipe row">
     <h2>Edit Recipe</h2>
     <div class="row">
-      <label>Set Number of Serves</label>
-      <input
-        v-model="this.$store.state.numberOfServes"
-        type="number"
-        class="form-control"
-      />
+      <label>Set Total Number of Serves</label>
+      <div class="col-lg-3 col-md-6 col-sm-9 col-12">
+        <input
+          v-model="this.$store.state.numberOfServes"
+          type="number"
+          class="form-control"
+        />
+      </div>
       <div class="table-responsive">
         <table class="table table-striped table-hover">
           <caption>
@@ -60,7 +62,7 @@
       </div>
     </div>
   </div>
-  <div class="nutrition">
+  <div class="nutrition row">
     <h2>Nutritional Information</h2>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
