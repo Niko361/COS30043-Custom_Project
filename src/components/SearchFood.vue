@@ -1,10 +1,13 @@
 <template>
-  <div class="search row g-0">
+  <div class="search row">
     <h2>Search For an ingredient</h2>
-    <div class="row g-0">
-      <p>Ingredient Name:</p>
+    <div class="row">
+      <label for="search">Ingredient Name: </label>
+
       <div class="col-lg-11 col-md-10 col-sm-9 col-7">
         <input
+          name="search"
+          id="search"
           v-model="searchquery"
           type="text"
           class="form-control"
@@ -19,7 +22,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row gx-0">
       <div class="table-responsive">
         <table class="table table-striped table-hover table-sm">
           <caption>
@@ -32,16 +35,21 @@
           </caption>
           <thead>
             <tr>
-              <th scope="col" id="addremove">Add / Remove</th>
               <th scope="col" id="description">Desc</th>
               <th scope="col" id="calories">Energy (KCal per 100g)</th>
               <th scope="col" id="protein">Protein (g per 100g)</th>
               <th scope="col" id="carbs">Carb (g per 100g)</th>
               <th scope="col" id="fats">Total Fat (g per 100g)</th>
+              <th scope="col" id="addremove">Add / Remove</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="food in getFoods" :key="food.id">
+              <td headers="description">{{ food.description }}</td>
+              <td headers="calories">{{ food.calories }}</td>
+              <td headers="protein">{{ food.protein }}</td>
+              <td headers="carbs">{{ food.carbs }}</td>
+              <td headers="fats">{{ food.fats }}</td>
               <td headers="addremove">
                 <button
                   v-changeButtonDirective="food.isAdded"
@@ -49,11 +57,6 @@
                   v-on:click="toggleFood(food.id)"
                 ></button>
               </td>
-              <td headers="description">{{ food.description }}</td>
-              <td headers="calories">{{ food.calories }}</td>
-              <td headers="protein">{{ food.protein }}</td>
-              <td headers="carbs">{{ food.carbs }}</td>
-              <td headers="fats">{{ food.fats }}</td>
             </tr>
           </tbody>
         </table>

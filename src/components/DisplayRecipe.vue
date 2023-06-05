@@ -1,15 +1,18 @@
 <template>
   <div class="displayrecipe row">
     <h2>Edit Recipe</h2>
-    <div class="row g-0">
-      <label>Set Total Number of Serves</label>
-      <div class="col-lg-3 col-md-6 col-sm-9 col-12">
-        <input
-          v-model="this.$store.state.numberOfServes"
-          type="number"
-          class="form-control"
-        />
-      </div>
+
+    <label for="numserves">Set Total Number of Serves</label>
+    <div class="col-lg-3 col-md-6 col-sm-9 col-12">
+      <input
+        v-model="this.$store.state.numberOfServes"
+        type="number"
+        class="form-control"
+        name="numserves"
+        id="numserves"
+      />
+    </div>
+    <div class="row gx-0">
       <div class="table-responsive">
         <table class="table table-striped table-hover table-sm">
           <caption>
@@ -17,8 +20,6 @@
           </caption>
           <thead>
             <tr>
-              <th scope="col" id="ingredientremove">Del</th>
-              <th scope="col" id="ingredientqty">Set Weight (g)</th>
               <th scope="col" id="ingredientdescription">Desc</th>
               <th scope="col" id="ingredientcalories">
                 Energy (KCal per 100g)
@@ -26,6 +27,8 @@
               <th scope="col" id="ingredientprotein">Protein (g per 100g)</th>
               <th scope="col" id="ingredientcarbs">Carb (g per 100g)</th>
               <th scope="col" id="ingredientfats">Fat (g per 100g)</th>
+              <th scope="col" id="ingredientqty">Set Weight (g)</th>
+              <th scope="col" id="ingredientremove">Del</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +36,19 @@
               v-for="food in this.$store.getters.recipeFoodList"
               :key="food.id"
             >
+              <td headers="ingredientdescription">{{ food.description }}</td>
+              <td headers="ingredientcalories">{{ food.calories }}</td>
+              <td headers="ingredientprotein">{{ food.protein }}</td>
+              <td headers="ingredientcarbs">{{ food.carbs }}</td>
+              <td headers="ingredientfats">{{ food.fats }}</td>
+              <td headers="ingredientqty">
+                <input
+                  v-model="food.quantityAdded"
+                  type="number"
+                  class="form-control"
+                  aria-label="set weight"
+                />
+              </td>
               <td headers="ingredientremove">
                 <button
                   type="button"
@@ -42,24 +58,13 @@
                   <i class="fa-solid fa-circle-xmark"></i>
                 </button>
               </td>
-              <td headers="ingredientqty">
-                <input
-                  v-model="food.quantityAdded"
-                  type="number"
-                  class="form-control"
-                />
-              </td>
-              <td headers="ingredientdescription">{{ food.description }}</td>
-              <td headers="ingredientcalories">{{ food.calories }}</td>
-              <td headers="ingredientprotein">{{ food.protein }}</td>
-              <td headers="ingredientcarbs">{{ food.carbs }}</td>
-              <td headers="ingredientfats">{{ food.fats }}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
+
   <div class="nutrition row">
     <h2>Nutritional Information</h2>
     <div class="table-responsive">
