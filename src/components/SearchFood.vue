@@ -49,21 +49,10 @@
               <td headers="fats">{{ food.fats }}</td>
               <td headers="addremove">
                 <button
-                  v-if="food.isAdded === false"
+                  v-changeButtonDirective="food.isAdded"
                   type="button"
-                  class="btn btn-success"
-                  v-on:click="addFood(food.id)"
-                >
-                  Add
-                </button>
-                <button
-                  v-if="food.isAdded === true"
-                  type="button"
-                  class="btn btn-danger"
-                  v-on:click="removeFood(food.id)"
-                >
-                  Remove
-                </button>
+                  v-on:click="toggleFood(food.id)"
+                ></button>
               </td>
             </tr>
           </tbody>
@@ -90,6 +79,18 @@
 <script>
 import Paginate from "vuejs-paginate-next";
 
+function changeButton(el, binding) {
+  if (binding.value == true) {
+    el.className = "btn btn-danger";
+    el.setAttribute("v-on:click", "removeFood(food.id)");
+    el.textContent = "Remove";
+  } else {
+    el.className = "btn btn-success";
+    el.setAttribute("v-on:click", "addFood(food.id)");
+    el.textContent = "Add";
+  }
+}
+
 export default {
   name: "SearchFood",
   data() {
@@ -100,6 +101,16 @@ export default {
       perPage: 10,
       currentPage: 1,
     };
+  },
+  directives: {
+    changeButtonDirective: {
+      created(el, binding) {
+        changeButton(el, binding);
+      },
+      updated(el, binding) {
+        changeButton(el, binding);
+      },
+    },
   },
   components: {
     Paginate,
@@ -123,13 +134,9 @@ export default {
     },
   },
   methods: {
-    //removes a food from the recipe list
-    removeFood: function (foodID) {
-      this.$store.commit("removeRecipeFood", foodID);
-    },
-    //adds a food to the food list
-    addFood: function (foodID) {
-      this.$store.commit("addRecipeFood", foodID);
+    //toggles whether a food to the food list
+    toggleFood: function (foodID) {
+      this.$store.commit("toggleRecipeFood", foodID);
     },
     //sets the clicked page
     clickCallback: function (pageNum) {

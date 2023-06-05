@@ -116,23 +116,18 @@ export default createStore({
     },
   },
   mutations: {
-    addRecipeFood(state, foodID) {
-      for (var i in state.foodSearchResultsProcessed) {
-        if (state.foodSearchResultsProcessed[i].id == foodID) {
-          state.foodSearchResultsProcessed[i].isAdded = true;
-          state.recipeFoodList.push(state.foodSearchResultsProcessed[i]);
-        }
-      }
-    },
-    removeRecipeFood(state, foodID) {
-      for (var i in state.foodSearchResultsProcessed) {
-        if (state.foodSearchResultsProcessed[i].id == foodID) {
-          state.foodSearchResultsProcessed[i].isAdded = false;
-        }
-      }
+    toggleRecipeFood(state, foodID) {
       for (var j in state.recipeFoodList) {
         if (state.recipeFoodList[j].id == foodID) {
           state.recipeFoodList.splice(j, 1);
+        }
+      }
+      for (var i in state.foodSearchResultsProcessed) {
+        if (state.foodSearchResultsProcessed[i].id == foodID) {
+          if (!state.foodSearchResultsProcessed[i].isAdded)
+            state.recipeFoodList.push(state.foodSearchResultsProcessed[i]);
+          state.foodSearchResultsProcessed[i].isAdded =
+            !state.foodSearchResultsProcessed[i].isAdded;
         }
       }
     },

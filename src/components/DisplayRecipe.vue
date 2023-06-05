@@ -44,7 +44,7 @@
                 <button
                   type="button"
                   class="btn btn-danger"
-                  v-on:click="removeFood(food.id)"
+                  v-on:click="toggleFood(food.id)"
                 >
                   Remove
                 </button>
@@ -139,9 +139,9 @@ export default {
     return {};
   },
   methods: {
-    //removes a food from the recipe list
-    removeFood: function (foodID) {
-      this.$store.commit("removeRecipeFood", foodID);
+    //toggles whether a food is in the recipe list
+    toggleFood: function (foodID) {
+      this.$store.commit("toggleRecipeFood", foodID);
     },
   },
 };
