@@ -82,14 +82,13 @@
 <script>
 import Paginate from "vuejs-paginate-next";
 
+//logic function for changeButton directive to avoid code duplication
 function changeButton(el, binding) {
   if (binding.value == true) {
     el.className = "btn btn-danger";
-    el.setAttribute("v-on:click", "removeFood(food.id)");
     el.textContent = "Del";
   } else {
     el.className = "btn btn-success";
-    el.setAttribute("v-on:click", "addFood(food.id)");
     el.textContent = "Add";
   }
 }
@@ -105,6 +104,7 @@ export default {
       currentPage: 1,
     };
   },
+  //directive for changing button colour and text. Uses external function to avoid code duplication.
   directives: {
     changeButtonDirective: {
       created(el, binding) {

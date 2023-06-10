@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <div class="nutrition row">
+  <div class="nutrition row gx-0">
     <h2>Nutritional Information</h2>
     <div class="table-responsive">
       <table class="table table-striped table-hover">
